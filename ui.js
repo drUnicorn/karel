@@ -1,34 +1,50 @@
 $(document).ready(function () {
-    var world = new World(document.getElementById("world"));
-    world.draw();
-    karel = new test();
-    karel.test();
-    karel = new Karel(document.getElementById("world"), world);
 
-});
+var world = new World(document.getElementById("world"));
+world.draw();
+karel = new Karel(document.getElementById("world"), world);
+
+karel.ui = {};
+
+
 $("#back-button").click(function () {
     var program = $("#codeArea").val();
-    eval(program);
+    karel.parse(program);
 });
 $("#turnLeft-button").click(function () {
     var program = "vlevoVbok();";
-    eval(program);
+    karel.parse(program);
 });
 $("#move-button").click(function () {
     var program = "krok();";
-    eval(program);
+    karel.parse(program);
 });
 $("#draw-button").click(function () {
     var world = new World(document.getElementById("world"));
     world.draw();
-    karel = new test();
-    karel.test();
     karel = new Karel(document.getElementById("world"), world);
 });
-function vlevoVbok() {
+
+karel.ui.disable = function(){
+  $('#back-button').attr('disabled',true);
+};
+
+karel.ui.enable = function(){
+  $('#back-button').attr('disabled',false);
+}
+
+karel.parse = function(str){
+  try{
+   parser.parse(str);
+  }catch(e){
+   alert(e.message);
+  }
+}
+
+window.vlevoVbok = function() {
     karel.turnLeft();
 }
-function krok() {
+window.krok = function() {
     karel.move();
 }
 
@@ -60,4 +76,6 @@ Object.defineProperty(window,'zed',{
  get: function(){
   return karel.isWall();
  }
+});
+
 });

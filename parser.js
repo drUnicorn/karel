@@ -261,11 +261,13 @@ parse: function parse(input) {
 var instrukce = [];
 
 function solve(){
+  karel.ui.disable();
   var i = -1;
   function step(){
     i++;
     if(i>=instrukce.length){
      instrukce = [];
+     karel.ui.enable();
      return;
     }
     console.log(instrukce[i]);

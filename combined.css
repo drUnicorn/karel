@@ -39,6 +39,11 @@ body
     background: #f5f5f5;
     box-shadow: 0 1px 2px #aaa,inset 0 1px 2px #fff;
 }
+.button[disabled]
+{
+    pointer-events: none;
+    text-decoration: line-through;
+}
 .not-selectable
 {
     -moz-user-select: none;
